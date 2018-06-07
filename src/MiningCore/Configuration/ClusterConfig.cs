@@ -52,6 +52,7 @@ namespace MiningCore.Configuration
         AEON, // AEON
         STAK, // Straks
         ETN, // Electroneum
+        MUSIC, //Musicoin
         MOON, // MoonCoin
         XVG,  // Verge
         GBX,  // GoByte

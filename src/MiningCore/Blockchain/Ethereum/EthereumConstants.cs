@@ -37,6 +37,7 @@ namespace MiningCore.Blockchain.Ethereum
         public const decimal TestnetBlockReward = 3.0m;
         public const decimal ExpanseBlockReward = 8.0m;
         public const decimal EllaismBlockReward = 5.0m;
+        public const decimal MusicoinBlockReward = 250.0m;
 
         public const int MinConfimations = 16;
     }
@@ -47,6 +48,7 @@ namespace MiningCore.Blockchain.Ethereum
         public const decimal BasePercent = 0.8m;
         public const int BlockPerEra = 5000000;
         public const decimal UnclePercent = 0.03125m;
+        public const decimal MusicUnclePercent = 0.748m;
     }
 
     public class CallistoConstants
@@ -80,6 +82,7 @@ namespace MiningCore.Blockchain.Ethereum
         Ellaism,
         CallistoTestnet,    // Callisto (CLO) v3 Testnet
         Callisto,    // Callisto (CLO) v3 Testnet
+        Musicoin,
 
         Unknown = -1,
     }

@@ -355,6 +355,9 @@ namespace MiningCore.Blockchain.Ethereum
 
                 case ParityChainType.Ropsten:
                     return EthereumConstants.ByzantiumBlockReward;
+                
+                case ParityChainType.Musicoin:
+                    return EthereumConstatns.MusicoinBlockReward;
 
                 case ParityChainType.CallistoTestnet:
                 case ParityChainType.Callisto:
@@ -395,7 +398,9 @@ namespace MiningCore.Blockchain.Ethereum
                 case ParityChainType.Classic:
                     reward *= EthereumClassicConstants.UnclePercent;
                     break;
-
+                case ParityChainType.Musicoin:
+                    reward *= EthereumClassicConstants.MusicUnclePercent;
+                    break;
                 default:
                     // https://ethereum.stackexchange.com/a/27195/18000
                     reward *= uheight + 8 - height;
