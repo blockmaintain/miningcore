@@ -357,7 +357,7 @@ namespace MiningCore.Blockchain.Ethereum
                     return EthereumConstants.ByzantiumBlockReward;
                 
                 case ParityChainType.Musicoin:
-                    return EthereumConstatns.MusicoinBlockReward;
+                    return EthereumConstants.MusicoinBlockReward;
 
                 case ParityChainType.CallistoTestnet:
                 case ParityChainType.Callisto:
