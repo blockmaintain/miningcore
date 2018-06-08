@@ -127,25 +127,31 @@ namespace MiningCore.Payments
                     await cf.RunTxAsync(async (con, tx) =>
                     {
                         // fill block effort if empty
-                        if (!block.Effort.HasValue)
+                        if (!block.Effort.HasValue){
+                            logger.Info(() => $"Calculating block effort for pool {pool.Id}, block {block.BlockHeight}");
                             await CalculateBlockEffort(pool, block, handler);
+                        }
 
                         switch (block.Status)
                         {
                             case BlockStatus.Confirmed:
                                 // blockchains that do not support block-reward payments via coinbase Tx
                                 // must generate balance records for all reward recipients instead
+                                logger.Info(() => $"UpdateBlockRewardBalancesAsync confirmed for pool {pool.Id}, block {block.BlockHeight}");
                                 var blockReward = await handler.UpdateBlockRewardBalancesAsync(con, tx, block, pool);
 
                                 // update share submitter balances through configured payout scheme
+                                logger.Info(() => $"UpdateBalancesAsync confirmed for pool {pool.Id}, block {block.BlockHeight}");
                                 await scheme.UpdateBalancesAsync(con, tx, pool, handler, block, blockReward);
 
                                 // finally update block status
+                                logger.Info(() => $"UpdateBlock confirmed for pool {pool.Id}, block {block.BlockHeight}");
                                 blockRepo.UpdateBlock(con, tx, block);
                                 break;
 
                             case BlockStatus.Orphaned:
                             case BlockStatus.Pending:
+                                logger.Info(() => $"UpdateBlock pending for pool {pool.Id}, block {block.BlockHeight}");
                                 blockRepo.UpdateBlock(con, tx, block);
                                 break;
                         }
