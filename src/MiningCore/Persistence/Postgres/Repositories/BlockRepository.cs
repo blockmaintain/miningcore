@@ -67,8 +67,9 @@ namespace MiningCore.Persistence.Postgres.Repositories
             logger.LogInvoke();
 
             var mapped = mapper.Map<Entities.Block>(block);
-
+            logger.Info(() => $"block attributes: Id {block.Id}, poolId {block.PoolId}, BlockHeight {block.BlockHeight}, status {block.Status}, type {block.Type}, reward {block.Reward}, reward {block.Reward}, effort {block.Effort}, Confirmationprogress {block.ConfirmationProgress}");
             var query = "UPDATE blocks SET blockheight = @blockheight, status = @status, type = @type, reward = @reward, effort = @effort, confirmationprogress = @confirmationprogress WHERE id = @id";
+            
             con.Execute(query, mapped, tx);
         }
 
